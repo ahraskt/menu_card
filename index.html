@@ -1,0 +1,443 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALICUT FOODS | Menu</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #fffaf0;
+            color: #30251d;
+        }
+
+        header {
+            background: linear-gradient(135deg, #183d2b, #286341);
+            color: white;
+            text-align: center;
+            padding: 38px 15px 30px;
+            border-bottom: 5px solid #e5ae48;
+        }
+
+        .logo {
+            font-size: 15px;
+            letter-spacing: 5px;
+            color: #f4d18a;
+            margin-bottom: 12px;
+        }
+
+        header h1 {
+            font-size: clamp(32px, 6vw, 52px);
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        header p {
+            color: #f8ead2;
+            font-size: 16px;
+        }
+
+        .header-tag {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 18px;
+            border: 1px solid #e5ae48;
+            border-radius: 30px;
+            color: #ffdf9b;
+            font-size: 13px;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 13px 10px;
+            background: #fffdf7;
+            box-shadow: 0 3px 12px #00000012;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #245438;
+            font-size: 13px;
+            font-weight: bold;
+            padding: 10px 13px;
+            border-radius: 22px;
+        }
+
+        nav a:hover {
+            background: #245438;
+            color: white;
+        }
+
+        .intro {
+            text-align: center;
+            padding: 35px 15px 15px;
+        }
+
+        .intro h2 {
+            font-size: 28px;
+            color: #245438;
+            margin-bottom: 10px;
+        }
+
+        .intro p {
+            color: #78695a;
+            line-height: 1.6;
+        }
+
+        .tools {
+            max-width: 900px;
+            margin: 20px auto 30px;
+            padding: 0 18px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .tools input {
+            flex: 1;
+            min-width: 220px;
+            padding: 13px 16px;
+            border: 1px solid #dfd4c1;
+            border-radius: 9px;
+            font-size: 15px;
+            outline-color: #286341;
+        }
+
+        .tools button {
+            padding: 13px 20px;
+            border: none;
+            border-radius: 9px;
+            background: #286341;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .tools button:hover {
+            background: #183d2b;
+        }
+
+        main {
+            max-width: 1050px;
+            margin: auto;
+            padding: 0 20px 45px;
+        }
+
+        .menu-section {
+            margin: 28px 0;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px #4a32100c;
+            border: 1px solid #eee5d5;
+            scroll-margin-top: 85px;
+        }
+
+        .section-heading {
+            background: #f4eddf;
+            padding: 20px 24px;
+            border-left: 5px solid #c58b32;
+        }
+
+        .section-heading h2 {
+            color: #245438;
+            font-size: 23px;
+        }
+
+        .section-heading p {
+            margin-top: 6px;
+            color: #81705c;
+            font-size: 13px;
+        }
+
+        .menu-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0 30px;
+            padding: 8px 24px 18px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 17px 0;
+            border-bottom: 1px dashed #e7dfd1;
+        }
+
+        .item-name {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .item-price {
+            color: #286341;
+            font-size: 16px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .empty {
+            display: none;
+            text-align: center;
+            padding: 25px;
+            color: #7f2f03;
+        }
+
+        footer {
+            background: #183d2b;
+            color: white;
+            text-align: center;
+            padding: 28px 15px;
+            line-height: 1.9;
+        }
+
+        footer strong {
+            color: #f4d18a;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                gap: 2px;
+            }
+
+            nav a {
+                padding: 9px 10px;
+                font-size: 12px;
+            }
+
+            .menu-list {
+                grid-template-columns: 1fr;
+                padding: 6px 18px 16px;
+            }
+
+            .section-heading {
+                padding: 17px 18px;
+            }
+
+            .intro h2 {
+                font-size: 24px;
+            }
+
+            main {
+                padding: 0 12px 30px;
+            }
+        }
+
+        @media print {
+            nav, .tools {
+                display: none;
+            }
+
+            body {
+                background: white;
+            }
+
+            .menu-section {
+                break-inside: avoid;
+                box-shadow: none;
+            }
+
+            header {
+                background: white;
+                color: black;
+                border-bottom: 2px solid black;
+            }
+
+            header p, .logo, .header-tag {
+                color: black;
+            }
+
+            footer {
+                background: white;
+                color: black;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">WELCOME TO</div>
+    <h1>CALICUT FOODS</h1>
+    <p>Authentic Kerala Flavours • Freshly Prepared</p>
+    <div class="header-tag">  MENU  </div>
+</header>
+
+<nav>
+    <a href="#bread">Bread Items</a>
+    <a href="#curry">Curry Items</a>
+    <a href="#chinese">Chinese</a>
+    <a href="#snacks">Snacks</a>
+    <a href="#beverages">Beverages</a>
+    <a href="#rice">Rice</a>
+</nav>
+
+<div class="intro">
+    <h2>Our Menu</h2>
+    <p>Good food, great taste, and the flavours you love.</p>
+</div>
+
+<div class="tools">
+    <input type="search" id="search"
+           placeholder="Search your favourite food..."
+           aria-label="Search menu items">
+</div>
+
+<main>
+
+    <section class="menu-section" id="bread">
+        <div class="section-heading">
+            <h2>🥖 Bread Items</h2>
+            <p>Traditional favourites, served fresh</p>
+        </div>
+        <div class="menu-list">
+            <div class="menu-item"><span class="item-name">Porotta</span><span class="item-price">₹13</span></div>
+            <div class="menu-item"><span class="item-name">Chappathi</span><span class="item-price">₹6</span></div>
+            <div class="menu-item"><span class="item-name">Vellappam</span><span class="item-price">₹8</span></div>
+            <div class="menu-item"><span class="item-name">Noolpputtu</span><span class="item-price">₹8</span></div>
+            <div class="menu-item"><span class="item-name">Puttu</span><span class="item-price">₹10</span></div>
+            <div class="menu-item"><span class="item-name">Nice Pathiri</span><span class="item-price">₹5</span></div>
+        </div>
+    </section>
+
+    <section class="menu-section" id="curry">
+        <div class="section-heading">
+            <h2>🍛 Curry Items</h2>
+            <p>Delicious curries to complete your meal</p>
+        </div>
+        <div class="menu-list">
+            <div class="menu-item"><span class="item-name">Beef Curry</span><span class="item-price">₹120</span></div>
+            <div class="menu-item"><span class="item-name">Chicken Kadai</span><span class="item-price">₹90</span></div>
+            <div class="menu-item"><span class="item-name">Chicken Curry</span><span class="item-price">₹70</span></div>
+            <div class="menu-item"><span class="item-name">Chicken Parts</span><span class="item-price">₹70</span></div>
+            <div class="menu-item"><span class="item-name">Botti</span><span class="item-price">₹70</span></div>
+            <div class="menu-item"><span class="item-name">Fish Curry</span><span class="item-price">₹40</span></div>
+            <div class="menu-item"><span class="item-name">Egg Curry</span><span class="item-price">₹35</span></div>
+            <div class="menu-item"><span class="item-name">Veg Curry</span><span class="item-price">₹35</span></div>
+        </div>
+    </section>
+
+    <section class="menu-section" id="chinese">
+        <div class="section-heading">
+            <h2>🥡 Chinese Special</h2>
+            <p>Bold flavours and spicy favourites</p>
+        </div>
+        <div class="menu-list">
+            <div class="menu-item"><span class="item-name">Chicken Kadai</span><span class="item-price">₹500</span></div>
+            <div class="menu-item"><span class="item-name">Chicken 65</span><span class="item-price">₹500</span></div>
+            <div class="menu-item"><span class="item-name">Chicken Kondattam</span><span class="item-price">₹500</span></div>
+            <div class="menu-item"><span class="item-name">Pepper Chicken</span><span class="item-price">₹500</span></div>
+            <div class="menu-item"><span class="item-name">Ginger Chicken</span><span class="item-price">₹500</span></div>
+            <div class="menu-item"><span class="item-name">Garlic Chicken</span><span class="item-price">₹500</span></div>
+        </div>
+    </section>
+
+    <section class="menu-section" id="snacks">
+        <div class="section-heading">
+            <h2>🍌 Snacks</h2>
+            <p>Perfect bites for tea time</p>
+        </div>
+        <div class="menu-list">
+            <div class="menu-item"><span class="item-name">Banana Fry</span><span class="item-price">₹12</span></div>
+            <div class="menu-item"><span class="item-name">Kayappam</span><span class="item-price">₹12</span></div>
+            <div class="menu-item"><span class="item-name">Ada</span><span class="item-price">₹12</span></div>
+            <div class="menu-item"><span class="item-name">Pathiri</span><span class="item-price">₹12</span></div>
+            <div class="menu-item"><span class="item-name">Samosa</span><span class="item-price">₹12</span></div>
+            <div class="menu-item"><span class="item-name">Egg Baji</span><span class="item-price">₹12</span></div>
+            <div class="menu-item"><span class="item-name">Uppuma</span><span class="item-price">₹12</span></div>
+        </div>
+    </section>
+
+    <section class="menu-section" id="beverages">
+        <div class="section-heading">
+            <h2>☕ Beverages</h2>
+            <p>Refresh yourself with our hot and cool drinks</p>
+        </div>
+        <div class="menu-list">
+            <div class="menu-item"><span class="item-name">Boost</span><span class="item-price">₹25</span></div>
+            <div class="menu-item"><span class="item-name">Horlicks</span><span class="item-price">₹25</span></div>
+            <div class="menu-item"><span class="item-name">Coffee</span><span class="item-price">₹15</span></div>
+            <div class="menu-item"><span class="item-name">Tea</span><span class="item-price">₹12</span></div>
+            <div class="menu-item"><span class="item-name">Soda Sarbath</span><span class="item-price">₹25</span></div>
+            <div class="menu-item"><span class="item-name">Lime</span><span class="item-price">₹20</span></div>
+            <div class="menu-item"><span class="item-name">Lime Sarbath</span><span class="item-price">₹20</span></div>
+            <div class="menu-item"><span class="item-name">Lime Soda</span><span class="item-price">₹15</span></div>
+        </div>
+    </section>
+
+    <section class="menu-section" id="rice">
+        <div class="section-heading">
+            <h2>🍚 Rice</h2>
+            <p>The heart and soul of every meal</p>
+        </div>
+        <div class="menu-list">
+            <div class="menu-item"><span class="item-name">Biriyani (F)</span><span class="item-price">₹120</span></div>
+            <div class="menu-item"><span class="item-name">Biriyani (H)</span><span class="item-price">₹100</span></div>
+            <div class="menu-item"><span class="item-name">Chicken Fried Rice</span><span class="item-price">₹130</span></div>
+            <div class="menu-item"><span class="item-name">Egg Fried Rice</span><span class="item-price">₹110</span></div>
+            <div class="menu-item"><span class="item-name">Veg Fried Rice</span><span class="item-price">₹100</span></div>
+        </div>
+    </section>
+
+    <p class="empty" id="empty">No matching menu items found.</p>
+
+</main>
+
+<footer>
+    <strong>CALICUT FOODS</strong>
+    <p>Thank you for visiting us!</p>
+    <p>Delicious food • Quality service • Great taste</p>
+</footer>
+
+<script>
+    const search = document.getElementById("search");
+    const items = document.querySelectorAll(".menu-item");
+    const sections = document.querySelectorAll(".menu-section");
+    const empty = document.getElementById("empty");
+
+    search.addEventListener("input", function () {
+        const query = this.value.toLowerCase().trim();
+        let total = 0;
+
+        items.forEach(function (item) {
+            const match = item.textContent.toLowerCase().includes(query);
+            item.style.display = match ? "flex" : "none";
+            if (match) total++;
+        });
+
+        sections.forEach(function (section) {
+            const visible = [...section.querySelectorAll(".menu-item")]
+                .some(item => item.style.display !== "none");
+            section.style.display = visible ? "block" : "none";
+        });
+
+        empty.style.display = total === 0 ? "block" : "none";
+    });
+</script>
+
+</body>
+</html>
